@@ -4,8 +4,9 @@ vite-plugin-http2 is a vite plugin to solve [the option "proxy" and "http2" conf
 
 this plugin can solve the following difficulties:
 
-- use self-signed certificates and  ignore scary browser warnings to running a local HTTPS server
+- The HTTPS certificate will be automatically generated for you and the configuration will be automatically modified
 - use http2-proxy to implement agent function
+
 
 ```javascript
 // vite.config.js
@@ -32,7 +33,7 @@ export default {
 ```
 
 
-| key               | desc                                                                                |
-| ------------------- |-------------------------------------------------------------------------------------|
-| proxy             | proxy [http2-proxy options](https://github.com/nxtedition/node-http2-proxy#options) |
-| certificateDomain | HTTPS certificate domain name                                                       |
+| key               | desc                                                                                        | default |
+| ------------------- | ----------------------------------------------------------------------------------------- | ------- |
+| proxy             | proxy[http2-proxy options](https://github.com/nxtedition/node-http2-proxy#options)          | - |
+| certificateDomain | [HTTPS certificate domain name](https://github.com/davewasmer/devcert#multiple-domains-san) | ['localhost'] |
