@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "rimraf dist && rollup -c -w",
     "build": "rimraf dist && rollup -c",
-    "prepublish": "npm run build",
+    "prepublish": "npm run build"
   },
   "engines": {
     "node": ">=12.2.0"
