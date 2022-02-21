@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "strict": true,
+    "noImplicitOverride": true,
+    "noUnusedLocals": true,
+    "esModuleInterop": true,
+    "useUnknownInCatchVariables": false,
+    "declarationDir": "dist",
+    "declaration": true,
+    "target": "ES2019",
+    "module": "commonjs",
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
+    "sourceMap": true
+  }
+}

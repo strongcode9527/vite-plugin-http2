@@ -1,0 +1,35 @@
+{
+  "name": "vite-plugin-http2",
+  "version": "1.0.0",
+  "description": "a vite plugin to solve http2 and proxy conflict",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "rimraf dist && rollup -c -w",
+    "build": "rimraf dist && rollup -c",
+    "prepublish": "npm run build",
+  },
+  "engines": {
+    "node": ">=12.2.0"
+  },
+  "keywords": [
+    "http2",
+    "proxy",
+    "vite",
+    "plugin"
+  ],
+  "author": "strong9527",
+  "license": "ISC",
+  "dependencies": {
+    "devcert": "^1.2.0",
+    "http2-proxy": "^5.0.53"
+  },
+  "devDependencies": {
+    "@open-wc/building-rollup": "^2.0.1",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "deepmerge": "^4.2.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.67.2",
+    "typescript": "^4.5.5",
+    "vite": "^2.8.3"
+  }
+}
