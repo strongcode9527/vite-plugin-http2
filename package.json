@@ -1,12 +1,16 @@
 {
   "name": "vite-plugin-http2",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "a vite plugin to solve http2 and proxy conflict",
   "main": "dist/index.js",
   "scripts": {
     "dev": "rimraf dist && rollup -c -w",
     "build": "rimraf dist && rollup -c",
     "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:strongcode9527/vite-plugin-http2.git"
   },
   "engines": {
     "node": ">=12.2.0"
