@@ -8,13 +8,31 @@ const http2Proxy = require('http2-proxy');
 
 type OptionsTypes = {
     proxy?: { [key: string]: http1WebOptions } | undefined,
-    certificateDomain?: string | string[] | undefined
+    certificateDomain?: string | string[] | undefined,
+    ssl?: {
+        key: string;
+        cert: string;
+    }
 }
 
 export default (options?: OptionsTypes): Plugin => {
     return {
         name: 'vite-plugin-http2',
         config: async () => {
+            if (options?.ssl) {
+                return {
+                    server: {
+                        https: {
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-ignore
+                            key: ssl.key,
+                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                            // @ts-ignore
+                            cert: ssl.cert,
+                        }
+                    }
+                }
+            }
             let ssl;
             // 生成证书必须包含 localhost 所以做一下处理
 
@@ -23,7 +41,7 @@ export default (options?: OptionsTypes): Plugin => {
             } catch (err) {
                 console.error('vite-plugin-http2', err);
             }
-            if (ssl) {
+            if (ssl && ssl.cert.toString() && ssl.key.toString()) {
                 return {
                     server: {
                         https: {
@@ -37,6 +55,7 @@ export default (options?: OptionsTypes): Plugin => {
                     }
                 };
             }
+            console.warn('[vite-plugin-http2]: sorry, devcert create certificate fail, you can pass ssl option to create http2 server');
             return {};
         },
         configureServer: async (server) => {

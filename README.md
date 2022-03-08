@@ -29,6 +29,11 @@ export default {
                         options.path = `/prefix/${options.path}`;
                     }
                 }
+            },
+            // if devcert create certificate fail，you can pass your ssl option
+            ssl: {
+                key: '',
+                cert: '',
             }
         }),
     ]
@@ -38,6 +43,7 @@ export default {
 
 
 | key               | desc                                                                                        | default       |
-| ------------------- | --------------------------------------------------------------------------------------------- | --------------- |
+| ------------------| --------------------------------------------------------------------------------------------- | --------------- |
 | proxy             | proxy[http2-proxy options](https://github.com/nxtedition/node-http2-proxy#options)          | -             |
 | certificateDomain | [HTTPS certificate domain name](https://github.com/davewasmer/devcert#multiple-domains-san) | ['localhost'] |
+| ssl               | if devcert create certificate fail，you can pass your ssl option                            | -              | 
