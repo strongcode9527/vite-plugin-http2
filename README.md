@@ -20,6 +20,7 @@ import http2 from 'vite-plugin-http2';
 export default {
     plugins: [
         http2 ({
+            // if you just use localhost, This configuration can be ignored
             certificateDomain: ['my-test.xxx.com'],
             proxy: {
                 '^/api': {
@@ -43,7 +44,7 @@ export default {
 
 
 | key               | desc                                                                                        | default       |
-| ------------------| --------------------------------------------------------------------------------------------- | --------------- |
-| proxy             | proxy[http2-proxy options](https://github.com/nxtedition/node-http2-proxy#options)          | -             |
+| ------------------|---------------------------------------------------------------------------------------------| --------------- |
+| proxy             | proxy [http2-proxy options](https://github.com/nxtedition/node-http2-proxy#options)         | -             |
 | certificateDomain | [HTTPS certificate domain name](https://github.com/davewasmer/devcert#multiple-domains-san) | ['localhost'] |
-| ssl               | if devcert create certificate fail，you can pass your ssl option                            | -              | 
+| ssl               | if devcert create certificate fail，you can pass your ssl option                             | -              | 
