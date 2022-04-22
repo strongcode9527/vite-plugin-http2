@@ -1,4 +1,4 @@
-[README for english](https://github.com/strongcode9527/vite-plugin-http2/blob/master/README.md)
+[README for english](https://github.com/strongcode9527/vite-plugin-http2/blob/master/README-en.md)
 
 ![vite-http2.jpg](http://tva1.sinaimg.cn/large/005KcNyUly1gzhr1ei0b4j30gj04hjrg.jpg)
 
