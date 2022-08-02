@@ -7,7 +7,7 @@ const http2Proxy = require('http2-proxy');
 
 
 type OptionsTypes = {
-    proxy?: { [key: string]: http1WebOptions } | undefined,
+    proxy?: { [key: string]: http1WebOptions } & { ws?: boolean } | undefined,
     certificateDomain?: string | string[] | undefined,
     ssl?: {
         key: string;
@@ -68,7 +68,7 @@ export default (options?: OptionsTypes): Plugin => {
                             http2Proxy.web(
                                 req,
                                 res,
-                                proxyOptions,
+                                typeof proxyOptions === 'object' ? {...proxyOptions, ws: undefined} : proxyOptions,
                                 err => err && next(err)
                             );
                             return;
@@ -76,6 +76,23 @@ export default (options?: OptionsTypes): Plugin => {
                     }
                     // 当没有命中代理的时候，直接丢到下一个中间件
                     next();
+                });
+                server.httpServer.on('upgrade', (req, socket, head) => {
+                    // 如果有一个配置命中请求，进行转发处理
+                    for (const [regexp, proxyOptions] of Object.entries(options.proxy)) {
+                      const re = new RegExp(regexp);
+                      if (req.url && re.test(req.url) && proxyOptions?.ws ){
+                        console.log(req.url)
+                          http2Proxy.ws(
+                              req,
+                              socket,
+                              head,
+                              typeof proxyOptions === 'object' ? {...proxyOptions, ws: undefined} : proxyOptions,
+                              err => console.error(err)
+                          );
+                          return;
+                      }
+                    }
                 });
             }
         },
