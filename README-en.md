@@ -5,6 +5,8 @@
 
 vite-plugin-http2 is a vite plugin to solve [the option "proxy" and "http2" conflict.](https://github.com/vitejs/vite/issues/484)
 
+suport http2 and websocket proxy
+
 this plugin can solve the following difficulties:
 
 - The HTTPS certificate will be automatically generated for you and the configuration will be automatically modified
@@ -27,7 +29,12 @@ export default {
                     async onReq(req, options) {
                         options.path = `/prefix/${options.path}`;
                     }
-                }
+                },
+                 '^/ws/connect/': {
+                     ws: true, // support websocket proxy
+                     hostname: 'xxx.com',
+                     protocol: 'http or https',
+                 },
             },
             // if devcert create certificate fail，you can pass your ssl option
             ssl: {
@@ -45,7 +52,7 @@ export default {
 | ------------------|---------------------------------------------------------------------------------------------| --------------- |
 | proxy             | proxy [http2-proxy options](https://github.com/nxtedition/node-http2-proxy#options)         | -             |
 | certificateDomain | [HTTPS certificate domain name](https://github.com/davewasmer/devcert#multiple-domains-san) | ['localhost'] |
-| ssl               | if devcert create certificate fail，you can pass your ssl option                             | -              | 
+| ssl               | if devcert create certificate fail，you can pass your ssl option                             | -              |
 
 HTTPS Certificate creation fails or has strange problems during use. You can use this command to clear the cache of Certificate creation.
 
