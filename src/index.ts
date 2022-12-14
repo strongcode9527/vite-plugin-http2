@@ -18,7 +18,10 @@ type OptionsTypes = {
 export default (options?: OptionsTypes): Plugin => {
     return {
         name: 'vite-plugin-http2',
-        config: async () => {
+        config: async (config, env) => {
+            if (env.command !== 'serve') {
+                return;
+            }
             if (options?.ssl) {
                 return {
                     server: {
