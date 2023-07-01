@@ -26,12 +26,8 @@ export default (options?: OptionsTypes): Plugin => {
                 return {
                     server: {
                         https: {
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-ignore
-                            key: ssl.key,
-                            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                            // @ts-ignore
-                            cert: ssl.cert,
+                            key: options.ssl.key,
+                            cert: options.ssl.cert,
                         }
                     }
                 }
